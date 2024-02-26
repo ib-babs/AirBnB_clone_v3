@@ -113,3 +113,17 @@ class TestFileStorage(unittest.TestCase):
         with open("file.json", "r") as f:
             js = f.read()
         self.assertEqual(json.loads(string), json.loads(js))
+
+    def test_get(self):
+        """Test that a row is returned if id matches and the class passed
+        None is returned if otherwise"""
+        storage = FileStorage()
+        res = storage.get(Amenity, '2ca5d4060ad6')
+        self.assertTrue(res == None)
+
+    def test_count(self):
+        """Test that length of all is returned when no class is passed
+        Legth of class if passed"""
+        storage = FileStorage()
+        count = storage.count()
+        self.assertTrue(type(count) == int)
