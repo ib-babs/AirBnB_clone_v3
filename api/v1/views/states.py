@@ -37,7 +37,7 @@ def post_to_state():
         data = request.get_json()
     except Exception as e:
         return jsonify({'400': 'Not a JSON'}), 400
-    if not 'name' in request.json:
+    if 'name' not in request.json:
         return jsonify({'400': 'Missing name'}), 400
     new_object = State(name=data.get('name'))
     storage.new(new_object)

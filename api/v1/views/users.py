@@ -10,7 +10,8 @@ from hashlib import md5
 @app_views.route('/users', methods=['GET'])
 @app_views.route('/users/<user_id>', methods=['GET'])
 def get_users_or_user(user_id=None):
-    """Retrieve all user objects  or <user_id> object if specified and exists"""
+    """Retrieve all user objects  or <user_id> object
+    if specified and exists"""
     if user_id is None:
         return ([(st.to_dict()) for st in storage.all(User).values()])
     user = storage.all(User).get(f'User.{user_id}')
@@ -37,9 +38,9 @@ def post_to_users():
         data = request.get_json()
     except Exception as e:
         return jsonify({'400': 'Not a JSON'}), 400
-    if not 'email' in request.json:
+    if 'email' not in request.json:
         return jsonify({'400': 'Missing email'}), 400
-    if not 'password' in request.json:
+    if 'password' not in request.json:
         return jsonify({'400': 'Missing password'}), 400
     new_object = User(email=data.get('email'),
                       password=data.get('password'))

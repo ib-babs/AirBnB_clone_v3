@@ -56,13 +56,13 @@ def post_to_place(city_id=None):
         # If parsing failed
         return jsonify({'400': 'Not a JSON'}), 400
 
-    if not 'user_id' in request.json:
+    if 'user_id' not in request.json:
         return jsonify({'400': 'Missing user_id'}), 400
     a_user = storage.all(User).get(f'User.{data.get("user_id")}')
     if a_user is None:
         abort(404)
 
-    if not 'name' in request.json:
+    if 'name' not in request.json:
         return jsonify({'400': 'Missing name'}), 400
 
     new_object = Place(name=data.get('name'), user_id=data.get('user_id'),

@@ -10,9 +10,11 @@ from flask import abort, request, jsonify
 @app_views.route('/amenities', methods=['GET'])
 @app_views.route('/amenities/<amenity_id>', methods=['GET'])
 def get_amenities_or_amenity(amenity_id=None):
-    """Retrieve all amenity objects  or <amenity_id> object if specified and exists"""
+    """Retrieve all amenity objects  or <amenity_id> object
+    if specified and exists"""
     if amenity_id is None:
-        return jsonify(([(st.to_dict()) for st in storage.all(Amenity).values()]))
+        return jsonify(([(st.to_dict())
+                         for st in storage.all(Amenity).values()]))
     amenity = storage.all(Amenity).get(f'Amenity.{amenity_id}')
     if amenity is None:
         abort(404)
@@ -37,7 +39,7 @@ def post_to_amenities():
         data = request.get_json()
     except Exception as e:
         return jsonify({'400': 'Not a JSON'}), 400
-    if not 'name' in request.json:
+    if 'name' not in request.json:
         return jsonify({'400': 'Missing name'}), 400
     new_object = Amenity(name=data.get('name'))
     storage.new(new_object)
