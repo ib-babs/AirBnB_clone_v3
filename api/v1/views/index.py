@@ -1,5 +1,8 @@
 #!/usr/bin/python3
-"""Index module"""
+"""
+Index module
+Stats and status
+"""
 from api.v1.views import app_views
 from flask import jsonify
 from models import storage
@@ -34,5 +37,4 @@ def stats():
 
     for key, value in classes.items():
         statistics[key] = storage.count(value)
-
     return jsonify(statistics)

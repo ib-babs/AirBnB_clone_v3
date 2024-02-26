@@ -1,5 +1,8 @@
 #!/usr/bin/python3
-"""Init.py"""
+"""
+Init file
+Feature
+"""
 
 from flask import Blueprint
 app_views = Blueprint('app_views', __name__, url_prefix='/api/v1')
