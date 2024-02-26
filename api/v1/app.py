@@ -3,7 +3,7 @@
 Your first endpoint (route) will be to return the status of your API
 """
 
-from flask import Flask, jsonify, make_response
+from flask import Flask, jsonify
 from models import storage
 from api.v1.views import app_views
 from os import getenv
@@ -25,14 +25,8 @@ def close(error):
 
 @app.errorhandler(404)
 def error(error):
-    return make_response(jsonify({'error': 'Not found'}), 404)
+    return jsonify({'error': 'Not found'}), 404
 
 
 if __name__ == '__main__':
-    host = getenv('HBNB_API_HOST')
-    port = getenv('HBNB_API_PORT')
-    if host is None:
-        host = '0.0.0.0'
-    if port is None:
-        port = 5000
     app.run(host, port, threaded=True)
