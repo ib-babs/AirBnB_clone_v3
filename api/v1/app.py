@@ -1,6 +1,9 @@
 #!/usr/bin/python3
-"""It’s time to start your API!
+"""
+It’s time to start your API!
 Your first endpoint (route) will be to return the status of your API
+This is the main app for running all the api endpoints
+All endpoints are prefixed with /api/v1
 """
 
 from flask import Flask, jsonify
