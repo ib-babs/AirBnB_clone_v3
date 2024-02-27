@@ -28,6 +28,7 @@ def close(error):
 
 @app.errorhandler(404)
 def error(error):
+    """Handling json error"""
     return jsonify({'error': 'Not found'}), 404
 
 
