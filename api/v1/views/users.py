@@ -46,7 +46,7 @@ def post_to_users():
                       password=data.get('password'))
     storage.new(new_object)
     storage.save()
-    return jsonify(new_object.to_dict()), 201
+    return jsonify(new_object.to_dict()), 201 
 
 
 @app_views.route('/users/<user_id>', methods=['PUT'])
